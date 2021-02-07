@@ -140,6 +140,12 @@
             this._value = value;
         }
 
+        /**
+         *
+         * @param {Number|String} value
+         * @returns {HTMLElement}
+         * @private
+         */
         _createCard(value) {
             const div = document.createElement('div');
             div.classList.add('card');
@@ -263,7 +269,7 @@
                 }
 
                 if (allFound) {
-                    this.endGame(measure.stop().getElapsedTime(), pair.attempts);
+                    this._endGame(measure.stop().getElapsedTime(), pair.attempts);
                 }
             };
 
@@ -306,8 +312,9 @@
          *
          * @param {String} time
          * @param {Number} attempts
+         * @private
          */
-        endGame(time, attempts) {
+        _endGame(time, attempts) {
             this.difficultySelector.hide();
             this.endLayer.show(time, attempts);
         }
