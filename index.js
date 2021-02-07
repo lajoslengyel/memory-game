@@ -213,6 +213,30 @@
             }
         }
 
+        /**
+         *
+         * @param {Number} difficulty
+         * @returns {Array}
+         */
+        static getEmptyBoard(difficulty) {
+            const result = [];
+
+            for (let i = 0; i < difficulty; i++) {
+                result.push([]);
+
+                for (let j = 0; j < difficulty; j++) {
+                    result[i][j] = null;
+                }
+            }
+
+            return result;
+        }
+
+        /**
+         *
+         * @param {Number} difficulty
+         * @private
+         */
         _init(difficulty) {
             // Hide layers
             const measure = new Measure();
@@ -278,29 +302,21 @@
             }
         }
 
-        static getEmptyBoard(difficulty) {
-            const result = [];
-
-            for (let i = 0; i < difficulty; i++) {
-                result.push([]);
-
-                for (let j = 0; j < difficulty; j++) {
-                    result[i][j] = null;
-                }
-            }
-
-            return result;
-        }
-
+        /**
+         *
+         * @param {String} time
+         * @param {Number} attempts
+         */
         endGame(time, attempts) {
             this.difficultySelector.hide();
             this.endLayer.show(time, attempts);
         }
     }
 
+    // Init board
     new Board();
 
     const keyboardHint = document.querySelector('.keyboard-hint');
     keyboardHint.querySelector('.cmd').innerText = navigator.platform.toLowerCase().includes('mac') ? 'CMD' : 'CTRL';
-    keyboardHint.style.visibility = 'visible';
+    keyboardHint.removeAttribute('style');
 })();
